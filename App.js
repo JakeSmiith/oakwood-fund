@@ -39,20 +39,16 @@ export default function App() {
         renderItem={({ item }) => (
           <View style={styles.card}>
             <Text style={styles.text}>{item.text}</Text>
-            <View style={styles.buttonRow}>
-              <Button
-                title="React"
-                onPress={() => reactToPost(item.id)}
-              />
-              <Button
-                title="Graphing"
-                onPress={goToGraphing}
-              />
-            </View>
+            <Button
+              title="React"
+              onPress={() => reactToPost(item.id)}
+            />
           </View>
         )}
+        contentContainerStyle={styles.listContent}
       />
-      {/* Global Graphing button at bottom (third button on this screen) */}
+
+      {/* Single Graphing button at the bottom */}
       <View style={styles.globalButton}>
         <Button
           title="Go to Graphing"
@@ -69,6 +65,9 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#fff'
   },
+  listContent: {
+    paddingBottom: 80 // ensure space for bottom button
+  },
   card: {
     marginBottom: 12,
     padding: 12,
@@ -79,12 +78,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontSize: 16
   },
-  buttonRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
   globalButton: {
-    marginTop: 16,
-    paddingHorizontal: 16
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+    right: 16
   }
 });
