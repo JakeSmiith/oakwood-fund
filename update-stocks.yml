@@ -1,0 +1,32 @@
+name: Daily stock‐data refresh
+
+on:
+  schedule:
+    - cron: '0 0 * * *'    # runs at 00:00 UTC daily
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔄 Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🐍 Install Python & Kaggle CLI
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: pip install kaggle
+
+      - name: 📥 Download latest stock data
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY:      ${{ secrets.KAGGLE_KEY }}
+        run: npm run update-stocks
+
+      - name: 💾 Commit & push CSV
+        run: |
+          git config user.name  "github-actions"
+          git config user.email "actions@github.com"
+          git add data/stocks/*.csv
+          git commit -m "chore: daily stock data update" || echo "No changes"
+          git push
