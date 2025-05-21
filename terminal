@@ -1,0 +1,16 @@
+//
+node --version
+npm --version
+npm install --global expo-cli
+expo init oakwood-fund
+
+//app.js
+cd oakwood-fund
+npm install
+// mobile - Requires download of Expo go
+npx expo start
+
+// web app
+npx expo install react-dom@19.0.0 react-native-web@^0.20.0 @expo/metro-runtime@~5.0.4
+npx expo start --web
+
