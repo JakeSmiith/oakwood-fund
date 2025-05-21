@@ -10,7 +10,19 @@ npm install
 // mobile - Requires download of Expo go
 npx expo start
 
+// adding navigation
+npm install @react-navigation/native @react-navigation/stack
+expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+// graphing screen
+mkdir screens
+cd screens
+touch GraphingScreen.js
+cd ..
+
 // web app
 npx expo install react-dom@19.0.0 react-native-web@^0.20.0 @expo/metro-runtime@~5.0.4
 npx expo start --web
+
+
 
