@@ -20,9 +20,20 @@ cd screens
 touch GraphingScreen.js
 cd ..
 
+// every 24-hour API
+mkdir -p .github/workflows
+touch .github/workflows/update-stocks.yml
+
 // web app
 npx expo install react-dom@19.0.0 react-native-web@^0.20.0 @expo/metro-runtime@~5.0.4
 npx expo start --web
+
+// every 24-hour API
+mkdir -p .github/workflows
+touch .github/workflows/update-stocks.yml
+git add .github/workflows/update-stocks.yml scripts/update-stocks.sh package.json
+git commit -m "chore: add daily stock-data refresh workflow"
+git push
 
 
 
